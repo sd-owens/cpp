@@ -6,11 +6,13 @@
 
 void readMatrix(int** matrix,  int matrixSize){
 
-    int numbers;
+    int numbers {};
 
     // prompt users for all numbers within given size matrix
 
     // iterate through 2 nested for loops to populate the matrix with user input.
+
+    // use a flattened array
 
     
 }
