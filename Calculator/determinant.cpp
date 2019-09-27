@@ -5,13 +5,13 @@
 
 int determinant(int** matrix, int matrixSize) {
 
-    int determinant {};
+    // int determinant {};
 
-    if (matrixSize == 2) {
+    // if (matrixSize == 2) {
 
-       determinant = (matrix[0][0] * matrix[1][1]) - (matrix[1][0] * matrix[0][1]);
+    //    determinant = (matrix[0][0] * matrix[1][1]) - (matrix[1][0] * matrix[0][1]);
 
-    }
+    // }
 
     // calculate the deterimant of the 2darray matrix and return as an int
 
@@ -22,4 +22,6 @@ int determinant(int** matrix, int matrixSize) {
     //[a][b][c]  "using Laplace expansion"
     //[d][e][f]
     //[g][h][i]  determinant is = a(ei-fh) - b(di-fg) + c(dh-eg)
+
+    return 11;
 }

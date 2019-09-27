@@ -65,7 +65,13 @@ int main() {
 
     int matrixSize = setup();
 
-    std::cout << matrixSize;
+    int** matrixPtr = initMatrix(matrixSize);
+
+    readMatrix(matrixPtr, matrixSize);
+
+    printMatrix(matrixPtr, matrixSize);
+
+    std::cout << determinant(matrixPtr, matrixSize) << std::endl;
 
     return 0;
 }
