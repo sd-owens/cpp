@@ -11,19 +11,19 @@ int setup() {
 
     std::string input{};
 
-    std::cout << "Choose a matrix size: (Select 1 or 2)\n"
-                 "(1) 2 x 2\n"
-                 "(2) 3 x 3\n";
+    std::cout << "Choose a matrix size: (Select 2 or 3)\n"
+                 "(2) 2 x 2 matrix\n"
+                 "(3) 3 x 3 matrix\n";
 
     // while there is input and user has not only pressed enter!
     while (getline(cin, input) && !input.empty()) {
 
-        if (input == "1" || input == "2") {
+        if (input == "2" || input == "3") {
             break;
         } else {
             std::cin.clear();  //clears potential error flag on cin from invalid input.
             std::cin.ignore(20, '\n'); //skips up to 20 characters up to the next newline character.
-            std::cerr << "Must select option 1 or 2!\n";
+            std::cerr << "Must select option 2 or 3!\n";
         }
     }
     return std::stoi(input);
