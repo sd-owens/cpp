@@ -2,6 +2,8 @@ CXX = g++
 
 CXXFLAGS = -Wall -g
 
+# VOPT = --tool=memcheck --leak-check=full --show-leak-kinds=all --track-origins=yes
+
 OBJECTS = main.o determinant.o readMatrix.o
 
 main: main.o determinant.o readMatrix.o

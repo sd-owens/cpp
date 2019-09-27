@@ -5,8 +5,6 @@
 
 using std::cin;
 
-
-
 int setup() {
 
     std::string input{};
@@ -21,8 +19,10 @@ int setup() {
         if (input == "2" || input == "3") {
             break;
         } else {
-            std::cin.clear();  //clears potential error flag on cin from invalid input.
-            std::cin.ignore(20, '\n'); //skips up to 20 characters up to the next newline character.
+            //clears potential error flag on cin from invalid input.
+            std::cin.clear();
+            //skips up to 20 characters up to the next newline character.
+            std::cin.ignore(20, '\n'); 
             std::cerr << "Must select option 2 or 3!\n";
         }
     }
@@ -49,6 +49,8 @@ void killMatrix(int** matrix, int inputSize) {
 
 // helper function to print 2D matrix to console for debugging.
 void printMatrix(int**matrix, int inputSize) {
+
+    std::cout << "\n";
 
     for(int y = 0; y < (inputSize); y++) {
 
