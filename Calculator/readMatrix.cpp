@@ -15,7 +15,7 @@ void readMatrix(int** matrix,  int matrixSize){
 
         for(int x = 0; x < matrixSize; x++){
 
-            std::cout << "Enter row " + std::to_string(y) + ", column " + std::to_string(x) + ": ";
+            std::cout << "Enter row " + std::to_string(y + 1) + ", column " + std::to_string(x + 1) + ": ";
 
             std::cin >> number;
             matrix[y][x] = number;

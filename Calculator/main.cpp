@@ -52,11 +52,13 @@ void printMatrix(int**matrix, int inputSize) {
 
     for(int y = 0; y < (inputSize); y++) {
 
+        std::cout << "{ ";
+
         for(int x = 0; x < inputSize; x++){
 
-            std::cout << matrix[y][x];
+            std::cout << std::to_string(matrix[y][x]) + " ";
         }
-         std::cout << "\n";
+         std::cout << "}\n";
     }
     std::cout << std::endl;
 }
