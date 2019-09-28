@@ -8,7 +8,7 @@ using std::cin;
 int setupCalculator() {
 
     std::cout << "\n*************************************************\n";
-    std::cout << "*****************Matrix Calculator***************\n";
+    std::cout << "**************** Matrix Calculator **************\n";
     std::cout << "*************************************************\n\n";
     std::cout << "This program calculates the determinant of a user\n"
                  "defined matrix of either size 2 x 2 or 3 x 3.\n\n";
