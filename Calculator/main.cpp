@@ -5,13 +5,18 @@
 
 using std::cin;
 
-int setup() {
+int setupCalculator() {
 
-    std::string input{};
+    std::cout << "Matrix Calculator";
+    std::cout << "*************************************************";
+    std::cout << "This program calculates the determinant of a user\n"
+                 "defined matrix of either size 2x2 or 3x3.\n\n";
 
     std::cout << "Choose a matrix size: (Select 2 or 3)\n"
                  "(2) 2 x 2 matrix\n"
                  "(3) 3 x 3 matrix\n";
+    
+    std::string input{};
 
     // while there is input and user has not only pressed enter!
     while (getline(cin, input) && !input.empty()) {
@@ -67,7 +72,7 @@ void printMatrix(int**matrix, int inputSize) {
 
 int main() {
 
-    int matrixSize = setup();
+    int matrixSize = setupCalculator();
 
     int** matrixPtr = initMatrix(matrixSize);
 

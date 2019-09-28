@@ -6,19 +6,22 @@
 
 void readMatrix(int** matrix,  int matrixSize){
 
+    std::cout << "\nMatrix size 2x2 has been chosen.\n"
+                 "Enter the matrix values by row and column as indicated.\n\n";
+
     int number{};
 
     // prompt users for all numbers within given size matrix
 
     // iterate through 2 nested for loops to populate the matrix with user input.
-    for(int y = 0; y < matrixSize; y++) {
+    for(int row = 0; row < matrixSize; row++) {
 
-        for(int x = 0; x < matrixSize; x++){
+        for(int col = 0; col < matrixSize; col++){
 
-            std::cout << "Enter row " + std::to_string(y + 1) + ", column " + std::to_string(x + 1) + ": ";
+            std::cout << "Enter row " + std::to_string(row + 1) + ", column " + std::to_string(col + 1) + ": ";
 
             std::cin >> number;
-            matrix[y][x] = number;
+            matrix[row][col] = number;
         }
          
     }
