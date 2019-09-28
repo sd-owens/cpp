@@ -6,7 +6,9 @@
 
 void readMatrix(int** matrix,  int matrixSize){
 
-    std::cout << "\nMatrix size 2x2 has been chosen.\n"
+    std::string num = std::to_string(matrixSize);
+
+    std::cout << "\nMatrix size " + num + " x " + num + " has been chosen.\n"
                  "Enter the matrix values by row and column as indicated.\n\n";
 
     int number{};

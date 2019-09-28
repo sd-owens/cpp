@@ -7,15 +7,16 @@ using std::cin;
 
 int setupCalculator() {
 
-    std::cout << "Matrix Calculator";
-    std::cout << "*************************************************";
+    std::cout << "\n*************************************************\n";
+    std::cout << "*****************Matrix Calculator***************\n";
+    std::cout << "*************************************************\n\n";
     std::cout << "This program calculates the determinant of a user\n"
-                 "defined matrix of either size 2x2 or 3x3.\n\n";
+                 "defined matrix of either size 2 x 2 or 3 x 3.\n\n";
 
-    std::cout << "Choose a matrix size: (Select 2 or 3)\n"
-                 "(2) 2 x 2 matrix\n"
-                 "(3) 3 x 3 matrix\n";
+    std::cout << "Choose a matrix size:\t(2) 2 x 2 matrix\n" 
+                 "(select 2 or 3)\t\t(3) 3 x 3 matrix\n\n";
     
+    std::cout << "Choice: ";
     std::string input{};
 
     // while there is input and user has not only pressed enter!
@@ -25,9 +26,9 @@ int setupCalculator() {
             break;
         } else {
             //clears potential error flag on cin from invalid input.
-            std::cin.clear();
             //skips up to 20 characters up to the next newline character.
-            std::cin.ignore(20, '\n'); 
+            std::cin.ignore(20, '\n');
+            std::cin.clear();
             std::cerr << "Must select option 2 or 3!\n";
         }
     }
@@ -78,9 +79,14 @@ int main() {
 
     readMatrix(matrixPtr, matrixSize);
 
+    std::cout << "\nYou entered the matrix:\n";
+
     printMatrix(matrixPtr, matrixSize);
 
+    std::cout << "\nThe determinant was calculated to be: ";
+
     std::cout << determinant(matrixPtr, matrixSize) << std::endl;
+    std::cout << "\n\n"<< std::endl;
 
     return 0;
 }
