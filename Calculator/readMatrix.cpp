@@ -14,8 +14,6 @@ void readMatrix(int** matrix,  int matrixSize){
     int number{};
 
     // prompt users for all numbers within given size matrix
-
-    // iterate through 2 nested for loops to populate the matrix with user input.
     for(int row = 0; row < matrixSize; row++) {
 
         for(int col = 0; col < matrixSize; col++){
@@ -25,11 +23,5 @@ void readMatrix(int** matrix,  int matrixSize){
             std::cin >> number;
             matrix[row][col] = number;
         }
-         
-    }
-
-
-    // use a flattened array
-
-    
+    }   
 }

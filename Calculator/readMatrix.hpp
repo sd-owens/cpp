@@ -7,8 +7,4 @@
 
 void readMatrix(int** matrix,  int matrixSize);
 
-
-
-
-
 #endif //READMATRIX_HPP

@@ -5,7 +5,7 @@
 
 using std::cin;
 
-int setupCalculator() {
+int calcSetup() {
 
     std::cout << "\n*************************************************\n";
     std::cout << "**************** Matrix Calculator **************\n";
@@ -35,34 +35,34 @@ int setupCalculator() {
     return std::stoi(input);
 }
 
-int** initMatrix(int inputSize) {
+int** initMatrix(int matrixSize) {
 
-    int** array = new int*[inputSize];  // array of inputSize int pointers (rows)
-    for (int i = 0; i < inputSize; i++){
-        array[i] = new int[inputSize];  // arrays of length inputSize (columns)
+    int** matrix = new int*[matrixSize];  // array of matrixSize int pointers (rows)
+    for (int i = 0; i < matrixSize; i++){
+        matrix[i] = new int[matrixSize];  // arrays of length matrixSize (columns)
     }
-    return array;
+    return matrix;
 }
 
-void killMatrix(int** matrix, int inputSize) {
+void delMatrix(int** matrix, int matrixSize) {
 
-    for (int i = 0; i < inputSize; i++) {
-        delete[] matrix[inputSize];
+    for (int i = 0; i < matrixSize; i++) {
+        delete[] matrix[matrixSize];
     }
     delete[] matrix;
-    matrix = nullptr;
+    //matrix = nullptr;
 }
 
 // helper function to print 2D matrix to console for debugging.
-void printMatrix(int**matrix, int inputSize) {
+void printMatrix(int** matrix, int matrixSize) {
 
     std::cout << "\n";
 
-    for(int y = 0; y < (inputSize); y++) {
+    for(int y = 0; y < (matrixSize); y++) {
 
         std::cout << "{ ";
 
-        for(int x = 0; x < inputSize; x++){
+        for(int x = 0; x < matrixSize; x++){
 
             std::cout << std::to_string(matrix[y][x]) + " ";
         }
@@ -71,22 +71,29 @@ void printMatrix(int**matrix, int inputSize) {
     std::cout << std::endl;
 }
 
+void showDeterminant(int** matrix, int matrixSize){
+
+    std::cout << "\nYou entered the matrix:\n";
+
+    printMatrix(matrix, matrixSize);
+
+    std::cout << "\nThe determinant was calculated to be: ";
+
+    std::cout << determinant(matrix, matrixSize) << std::endl;
+    std::cout << "\n\n"<< std::endl;
+}
+
 int main() {
 
-    int matrixSize = setupCalculator();
+    int matrixSize = calcSetup();
 
     int** matrixPtr = initMatrix(matrixSize);
 
     readMatrix(matrixPtr, matrixSize);
 
-    std::cout << "\nYou entered the matrix:\n";
+    showDeterminant(matrixPtr, matrixSize);
 
-    printMatrix(matrixPtr, matrixSize);
-
-    std::cout << "\nThe determinant was calculated to be: ";
-
-    std::cout << determinant(matrixPtr, matrixSize) << std::endl;
-    std::cout << "\n\n"<< std::endl;
+    delMatrix(matrixPtr, matrixSize);
 
     return 0;
 }
