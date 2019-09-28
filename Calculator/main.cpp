@@ -20,7 +20,7 @@ int calcSetup() {
     std::string input{};
 
     // while there is input and user has not only pressed enter!
-    while (getline(cin, input) && !input.empty()) {
+    while (!input.empty() || cin >> input) {
 
         if (input == "2" || input == "3") {
             break;
