@@ -13,9 +13,11 @@ main.o: main.cpp determinant.hpp readMatrix.hpp
 	$(CXX) $(CXXFLAGS) $(CXXVER) -c main.cpp
 
 determinant.o: determinant.hpp
-        $(CXX) $(CXXFLAGS) $(CXXVER) -c determinant.cpp
 
 readMatrix.o: readMatrix.hpp
-        $(CXX) $(CXXFLAGS) $(CXXVER) -c readMatrix.cpp
+
 clean:
 	-rm main $(OBJECTS)
+
+debug: main
+	@valgrind $(VOPT) ./main
