@@ -47,10 +47,10 @@ int** initMatrix(int matrixSize) {
 void delMatrix(int** matrix, int matrixSize) {
 
     for (int i = 0; i < matrixSize; i++) {
-        delete[] matrix[matrixSize];
+        delete[] matrix[i];
     }
     delete[] matrix;
-    //matrix = nullptr;
+    matrix = nullptr;
 }
 
 // helper function to print 2D matrix to console for debugging.
