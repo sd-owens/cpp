@@ -6,7 +6,7 @@
 
 void readMatrix(int** matrix,  int matrixSize){
 
-    int number {};
+    int number{};
 
     // prompt users for all numbers within given size matrix
 
