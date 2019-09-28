@@ -20,16 +20,17 @@ int calcSetup() {
     std::string input{};
 
     // while there is input and user has not only pressed enter!
-    while (!input.empty() || cin >> input) {
+    while (cin >> input ) {
 
         if (input == "2" || input == "3") {
             break;
         } else {
             //clears potential error flag on cin from invalid input.
             //skips up to 20 characters up to the next newline character.
-            std::cin.ignore(20, '\n');
-            std::cin.clear();
+            std::cin.ignore(20,'\n');
             std::cerr << "Must select option 2 or 3!\n";
+            std::cin.clear();
+            input = "";  // re-initializes input to empty string "".
         }
     }
     return std::stoi(input);
