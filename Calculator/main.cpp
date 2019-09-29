@@ -1,9 +1,20 @@
 #include <iostream>
 #include <string>
+#include <limits>
+#include <regex>
 #include "determinant.hpp"
 #include "readMatrix.hpp"
 
 using std::cin;
+
+bool validateInput(std::string input) {
+   
+    std::regex r("^[2-3]$"); 
+    std::smatch m;
+    std::regex_search(input, m, r);
+
+    return !m.empty();
+}
 
 int calcSetup() {
 
@@ -17,22 +28,21 @@ int calcSetup() {
                  "(select 2 or 3)\t\t(3) 3 x 3 matrix\n\n";
     
     std::cout << "Choice: ";
+
     std::string input{};
+    getline(cin, input);
 
-    // while there is input and user has not only pressed enter!
-    while (cin >> input ) {
+    while (!validateInput(input)) {
 
-        if (input == "2" || input == "3") {
-            break;
-        } else {
-            //clears potential error flag on cin from invalid input.
-            //skips up to 20 characters up to the next newline character.
-            std::cin.ignore(20,'\n');
-            std::cerr << "Must select option 2 or 3!\n";
-            std::cin.clear();
-            input = "";  // re-initializes input to empty string "".
-        }
+        //clears potential error flag on cin from invalid input.
+        //std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+        std::cerr << "Must select option 2 or 3!\n";
+        std::cin.clear();
+        input = "";  // re-initializes input to empty string ""
+
+        getline(cin, input);
     }
+
     return std::stoi(input);
 }
 
