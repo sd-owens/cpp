@@ -7,7 +7,7 @@
 
 using std::cin;
 
-bool validateInput(std::string input) {
+bool isValid(std::string input) {
    
     std::regex r("^[2-3]$"); 
     std::smatch m;
@@ -32,7 +32,7 @@ int calcSetup() {
     std::string input{};
     getline(cin, input);
 
-    while (!validateInput(input)) {
+    while (!isValid(input)) {
 
         //clears potential error flag on cin from invalid input.
         //std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
