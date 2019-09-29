@@ -7,7 +7,16 @@
 
 using std::cin;
 
-bool isValid(std::string input) {
+// function prototypes 
+bool isValidInput(std::string input);
+int calcSetup();
+int** initMatrix(int matrixSize);
+void delMatrix(int** matrix, int matrixSize);
+void printMatrix(int** matrix, int matrixSize);
+void showDeterminant(int** matrix, int matrixSize);
+
+
+bool isValidInput(std::string input) {
    
     std::regex r("^[2-3]$"); 
     std::smatch m;
@@ -32,7 +41,7 @@ int calcSetup() {
     std::string input{};
     getline(cin, input);
 
-    while (!isValid(input)) {
+    while (!isValidInput(input)) {
 
         //clears potential error flag on cin from invalid input.
         //std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');

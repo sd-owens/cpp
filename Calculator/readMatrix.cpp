@@ -10,7 +10,7 @@ using std::cin;
 
 bool isValid(std::string input) {
    
-    std::regex r("^//d+$"); 
+    std::regex r("^\\d+$"); 
     std::smatch m;
     std::regex_search(input, m, r);
 
@@ -42,6 +42,7 @@ void readMatrix(int** matrix,  int matrixSize){
                  "Enter the values by row and column as indicated.\n\n";
 
     std::string input{};
+    int number {};
 
     // prompt users for all numbers within given size matrix
     for(int row = 0; row < matrixSize; row++) {
@@ -50,9 +51,9 @@ void readMatrix(int** matrix,  int matrixSize){
 
             std::cout << "Enter row " + std::to_string(row + 1) + ", column " + std::to_string(col + 1) + ": ";
 
-            std::cin >> input;
+            getline(cin, input);
 
-            int number = validateInput(input);
+            number = validateInput(input);
 
             matrix[row][col] = number;
         }
