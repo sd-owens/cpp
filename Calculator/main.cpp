@@ -1,3 +1,13 @@
+/************************************************************************
+** Program name: Matrix Determinant Caculator
+** Author: Steven Owens
+** Date: 9/29/2019
+** Description:  Program to calculate the determinant of a matrix of size
+** 2x2 or 3x3. Provides functionality for user to choose size of matrix
+** and input integer data with error handling to prevent input of invalid
+** data and safeguard againgst erroneous results.
+************************************************************************/
+
 #include <iostream>
 #include <string>
 #include <limits>
@@ -15,7 +25,8 @@ void delMatrix(int** matrix, int matrixSize);
 void printMatrix(int** matrix, int matrixSize);
 void showDeterminant(int** matrix, int matrixSize);
 
-
+/* Provides regex input validiation by taking a string input parameter and
+   returns a boolean value. */
 bool isValidInput(std::string input) {
    
     std::regex r("^[2-3]$"); 
@@ -25,6 +36,10 @@ bool isValidInput(std::string input) {
     return !m.empty();
 }
 
+/* Provides console interface for user input, takes no parameters and returns a
+   fully qualified integer value for the size of the matrix. Additionaly, provides
+   validation and error checking of user input before conversion to a integer and 
+   returning it to the caller.*/
 int calcSetup() {
 
     std::cout << "\n*************************************************\n";
@@ -44,7 +59,6 @@ int calcSetup() {
     while (!isValidInput(input)) {
 
         //clears potential error flag on cin from invalid input.
-        //std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
         std::cerr << "Must select option 2 or 3!\n";
         std::cin.clear();
         input = "";  // re-initializes input to empty string ""
@@ -55,6 +69,9 @@ int calcSetup() {
     return std::stoi(input);
 }
 
+/*  Dynamically allocates memory on the heap for a 2D matrix.  Takes an single input
+    parameter of an integer as the size of the matrix and returns a pointer to the 2D
+    array on the heap (Pointer to an array of int pointers to arrays of integers) */
 int** initMatrix(int matrixSize) {
 
     int** matrix = new int*[matrixSize];  // array of matrixSize int pointers (rows)
@@ -63,7 +80,9 @@ int** initMatrix(int matrixSize) {
     }
     return matrix;
 }
-
+/*  Deallocates memory dynamically assigned on the heap for the 2D matrix.  Take two
+    parameters, the pointer to array of int pointers to arrays of integers and the 
+    size of the matrix for the for loop.  Re-assigns the pointer to nullptr. */
 void delMatrix(int** matrix, int matrixSize) {
 
     for (int i = 0; i < matrixSize; i++) {
@@ -73,7 +92,10 @@ void delMatrix(int** matrix, int matrixSize) {
     matrix = nullptr;
 }
 
-// helper function to print 2D matrix to console for debugging.
+/*  Prints 2D matrix to console for user feedback that input matches expected.  
+    Takes two parameters, the pointer to array of int pointers to arrays 
+    of integers and the size of the matrix for the for loop.  Additionally used 
+    for debugging during development */
 void printMatrix(int** matrix, int matrixSize) {
 
     std::cout << "\n";
@@ -91,6 +113,10 @@ void printMatrix(int** matrix, int matrixSize) {
     std::cout << std::endl;
 }
 
+/*  Provides feedback to user that input matches expected and calls the function
+    to calculate the determinant.  Provides user feedback on calculated value.  
+    Takes two parameters, the pointer to array of int pointers to arrays 
+    of integers and the size of the matrix for the for loop. Return type is void */
 void showDeterminant(int** matrix, int matrixSize){
 
     std::cout << "\nYou entered the matrix:\n";
@@ -103,6 +129,9 @@ void showDeterminant(int** matrix, int matrixSize){
     std::cout << "\n\n"<< std::endl;
 }
 
+/*  Main function for program, takes no parameters and returns a 0 if execution is
+    successful otherwise early termination results in other integers values. Provides
+    overall program setup and flow control including deallocation of dynamic memory */
 int main() {
 
     int matrixSize = calcSetup();
