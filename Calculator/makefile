@@ -1,3 +1,13 @@
+#/************************************************************************
+#** Program name: Matrix Determinant Caculator Makefile
+#** Author: Steven Owens
+#** Date: 9/29/2019
+#** Description:  Program to calculate the determinant of a matrix of size
+#** 2x2 or 3x3. Provides functionality for user to choose size of matrix
+#** and input integer data with error handling to prevent input of invalid
+#** data and safeguard againgst erroneous results.
+#************************************************************************/
+
 # makefile syntax adapted from example provided TA Harlan James <waldroha@oregonstat.edu> 
 # with snippet VOPT for valgrind directly incorporated.
 
