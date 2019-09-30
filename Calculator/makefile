@@ -2,7 +2,7 @@ CXX = g++
 CXXVER = -std=c++11
 CXXFLAGS = -Wall -g
 
-# VOPT = --tool=memcheck --leak-check=full --show-leak-kinds=all --track-origins=yes
+VOPT = --tool=memcheck --leak-check=full --show-leak-kinds=all --track-origins=yes
 
 OBJECTS = main.o determinant.o readMatrix.o
 
