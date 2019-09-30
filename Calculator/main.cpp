@@ -27,6 +27,13 @@ void showDeterminant(int** matrix, int matrixSize);
 
 /* Provides regex input validiation by taking a string input parameter and
    returns a boolean value. Only allows positive ints 2 or 3. */
+
+/* Regex string user input validation adapted from a post by Jan Goyvaerts on 
+    20170707 from https://www.regular-expressions.info/numericranges.html
+    and a post by Akshay Pai on (no date) from https://www.hackerearth.com/practice/
+    notes/validating-user-input-in-c/ and finally syntax and snippets from a post
+    by user "Galik" on 20150618 from https://stackoverflow.com/questions/30921932/understanding-c-regex-by-a-simple-example **/
+
 bool isValidInput(std::string input) {
    
     std::regex r("^[2-3]$"); 
@@ -72,6 +79,9 @@ int calcSetup() {
 /*  Dynamically allocates memory on the heap for a 2D matrix.  Takes an single input
     parameter of an integer as the size of the matrix and returns a pointer to the 2D
     array on the heap (Pointer to an array of int pointers to arrays of integers) */
+
+/*  Snippet by user Alex on 20150814 from https://www.learncpp.com/cpp-tutorial/ 
+    6-14-pointers-to-pointers/ as linked from the module 1 coursework. */
 int** initMatrix(int matrixSize) {
 
     int** matrix = new int*[matrixSize];  // array of matrixSize int pointers (rows)
@@ -80,9 +90,13 @@ int** initMatrix(int matrixSize) {
     }
     return matrix;
 }
+
 /*  Deallocates memory dynamically assigned on the heap for the 2D matrix.  Take two
     parameters, the pointer to array of int pointers to arrays of integers and the 
     size of the matrix for the for loop.  Re-assigns the pointer to nullptr. */
+
+/*  Snippet by user Alex on 20150814 from https://www.learncpp.com/cpp-tutorial/ 
+    6-14-pointers-to-pointers/ as linked from the module 1 coursework. */
 void delMatrix(int** matrix, int matrixSize) {
 
     for (int i = 0; i < matrixSize; i++) {

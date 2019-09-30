@@ -16,8 +16,14 @@
 
 using std::cin;
 
-/* Provides regex input validiation by taking a string input parameter and
-   returns a boolean value. */
+/*  Provides regex input validiation by taking a string input parameter and
+    returns a boolean value. */
+
+/*  Regex string user input validation adapted from a post by Jan Goyvaerts on 
+    20170707 from https://www.regular-expressions.info/numericranges.html,
+    a post by Akshay Pai on (no date) from https://www.hackerearth.com/practice/
+    notes/validating-user-input-in-c/ and finally syntax and snippets from a post
+    by user "Galik" on 20150618 from https://stackoverflow.com/questions/30921932/understanding-c-regex-by-a-simple-example */
 bool isValid(std::string input) {
    
     std::regex r("^-?\\d+$");  //start/ends
@@ -27,9 +33,12 @@ bool isValid(std::string input) {
     return !m.empty();
 }
 
-/* Validates and provides error handling for user input as a string and returns
-   a fully qualified integer value back to the calling function. Prompts user
-   for input following validiation failure. */
+/*  Validates and provides error handling for user input as a string and returns
+    a fully qualified integer value back to the calling function. Prompts user
+    for input following validiation failure. */
+
+/*  cin methods fail, ignore, and cerr adapted from a post by user "int main" on
+    20080715 from http://www.cplusplus.com/forum/beginner/2957/ */
 int validateInput(std::string input){
 
     while(!isValid(input)){

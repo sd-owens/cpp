@@ -1,3 +1,6 @@
+# makefile syntax adapted from example provided TA Harlan James <waldroha@oregonstat.edu> 
+# with snippet VOPT for valgrind directly incorporated.
+
 CXX = g++ 
 CXXVER = -std=c++11
 CXXFLAGS = -Wall -g
