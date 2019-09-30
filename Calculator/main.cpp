@@ -26,7 +26,7 @@ void printMatrix(int** matrix, int matrixSize);
 void showDeterminant(int** matrix, int matrixSize);
 
 /* Provides regex input validiation by taking a string input parameter and
-   returns a boolean value. */
+   returns a boolean value. Only allows positive ints 2 or 3. */
 bool isValidInput(std::string input) {
    
     std::regex r("^[2-3]$"); 

@@ -20,7 +20,7 @@ using std::cin;
    returns a boolean value. */
 bool isValid(std::string input) {
    
-    std::regex r("^\\d+$");  //start/ends
+    std::regex r("^-?\\d+$");  //start/ends
     std::smatch m;
     std::regex_search(input, m, r);
 
