@@ -25,22 +25,13 @@ void delMatrix(int** matrix, int matrixSize);
 void printMatrix(int** matrix, int matrixSize);
 void showDeterminant(int** matrix, int matrixSize);
 
-/* Provides regex input validiation by taking a string input parameter and
-   returns a boolean value. Only allows positive ints 2 or 3. */
-
-/* Regex string user input validation adapted from a post by Jan Goyvaerts on 
-    20170707 from https://www.regular-expressions.info/numericranges.html
-    and a post by Akshay Pai on (no date) from https://www.hackerearth.com/practice/
-    notes/validating-user-input-in-c/ and finally syntax and snippets from a post
-    by user "Galik" on 20150618 from https://stackoverflow.com/questions/30921932/understanding-c-regex-by-a-simple-example **/
+/*  Provides user input validation by taking a string input parameter and returns
+    a boolean value. This validation is very restrictive as only two options are
+    available to the user: char '2' or char '3'.  All other inputsare invalid */
 
 bool isValidInput(std::string input) {
-   
-    std::regex r("^[2-3]$"); 
-    std::smatch m;
-    std::regex_search(input, m, r);
-
-    return !m.empty();
+    
+    return (input.at(0) == '2' || input.at(0) == '3');
 }
 
 /* Provides console interface for user input, takes no parameters and returns a

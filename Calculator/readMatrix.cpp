@@ -15,21 +15,33 @@
 
 using std::cin;
 
-/*  Provides regex input validiation by taking a string input parameter and
-    returns a boolean value. */
+/*  Provides user input validation by taking a string input parameter and
+    returns a boolean value. Handles neg numbers "strings" by checking for and
+    removing '-' char prior to validation, only allows this special char in the
+    first char position.  Iterates through string and checks if all char are digits,
+    if not it sets the isValidInput flag to false and breaks the loop since a single
+    failed check means the input is invalid */
 
-/*  Regex string user input validation adapted from a post by Jan Goyvaerts on 
-    20170707 from https://www.regular-expressions.info/numericranges.html,
-    a post by Akshay Pai on (no date) from https://www.hackerearth.com/practice/
-    notes/validating-user-input-in-c/ and finally syntax and snippets from a post
-    by user "Galik" on 20150618 from https://stackoverflow.com/questions/30921932/understanding-c-regex-by-a-simple-example */
 bool isValid(std::string input) {
    
-    std::regex r("^-?\\d+$");  //start/ends
-    std::smatch m;
-    std::regex_search(input, m, r);
+    bool validInput = true;
 
-    return !m.empty();
+    std::string cleanInput{};
+
+    if(input.at(0) == '-'){ 
+        cleanInput = input.erase(0,1);
+    }
+
+    for(unsigned int i = 0; i < input.length(); i++){
+
+       if(!std::isdigit(input.at(i)) && validInput){
+               
+               validInput = false;
+               break;
+        }
+    }
+
+    return validInput;
 }
 
 /*  Validates and provides error handling for user input as a string and returns
@@ -37,13 +49,13 @@ bool isValid(std::string input) {
     for input following validiation failure. */
 
 /*  cin methods fail, ignore, and cerr adapted from a post by user "int main" on
-    20080715 from http://www.cplusplus.com/forum/beginner/2957/ */
+    20080715 from http://www.cplusplus.com/forum/beginner/2957/ Elected to not use
+    cin.fail() and use string input for validation */
 int validateInput(std::string input){
 
     while(!isValid(input)){
 
         //clears potential error flag on cin from invalid input.
-        //std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
         std::cerr << "Must enter an integer!\n";
         std::cin.clear();
         input = "";  // re-initializes input to empty string ""
@@ -66,6 +78,7 @@ void readMatrix(int** matrix,  int matrixSize){
                  "Enter the values by row and column as indicated.\n\n";
 
     std::string input{};
+
     int number {};
 
     for(int row = 0; row < matrixSize; row++) {
