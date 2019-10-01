@@ -32,9 +32,9 @@ bool isValid(std::string input) {
         cleanInput = input.erase(0,1);
     }
 
-    for(unsigned int i = 0; i < input.length(); i++){
+    for(unsigned int i = 0; i < cleanInput.length(); i++){
 
-       if(!std::isdigit(input.at(i)) && validInput){
+       if(!std::isdigit(cleanInput.at(i)) && validInput){
                
                validInput = false;
                break;
