@@ -8,7 +8,6 @@
 ** data and safeguard againgst erroneous results.
 ************************************************************************/
 
-
 #include <iostream>
 #include <string>
 #include <regex>
