@@ -7,7 +7,7 @@
 ** and input integer data with error handling to prevent input of invalid
 ** data and safeguard againgst erroneous results.  This program should be
 ** compiled with the command "make" from the command line which produces
-** an executable named "mcalc". Run with the command ./mcalc
+** an executable named "mcalc.bin". Run with the command ./mcalc.bin
 ************************************************************************/
 
 #ifndef DETERMINANT_HPP
