@@ -5,14 +5,20 @@
 ** Description:  Program to calculate the determinant of a matrix of size
 ** 2x2 or 3x3. Provides functionality for user to choose size of matrix
 ** and input integer data with error handling to prevent input of invalid
-** data and safeguard againgst erroneous results.
+** data and safeguard againgst erroneous results.  This program should be
+** compiled with the command "make" from the command line which produces
+** an executable named "mcalc". Run with the command ./mcalc
 ************************************************************************/
 
 #ifndef READMATRIX_HPP
 #define READMATRIX_HPP
 
-/* Provides regex input validiation by taking a string input parameter and
-   returns a boolean value. */
+/*  Provides user input validation by taking a string input parameter and
+    returns a boolean value. Handles neg numbers "strings" by checking for and
+    removing '-' char prior to validation, only allows this special char in the
+    first char position.  Iterates through string and checks if all char are digits,
+    if not it sets the isValidInput flag to false and breaks the loop since a single
+    failed check means the input is invalid */
 bool isValid(std::string input);
 
 /* Validates and provides error handling for user input as a string and returns

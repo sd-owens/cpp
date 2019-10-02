@@ -5,7 +5,9 @@
 ** Description:  Program to calculate the determinant of a matrix of size
 ** 2x2 or 3x3. Provides functionality for user to choose size of matrix
 ** and input integer data with error handling to prevent input of invalid
-** data and safeguard againgst erroneous results.
+** data and safeguard againgst erroneous results.  This program should be
+** compiled with the command "make" from the command line which produces
+** an executable named "mcalc". Run with the command ./mcalc
 ************************************************************************/
 
 #include "determinant.hpp"
