@@ -30,8 +30,13 @@ bool isValid(std::string input) {
 
     std::string cleanInput{};
 
-    if(input.at(0) == '-'){ 
+    if(input.at(0) == '-'){
+
         cleanInput = input.erase(0,1);
+        
+    } else {
+
+        cleanInput = input;
     }
 
     for(unsigned int i = 0; i < cleanInput.length(); i++){
