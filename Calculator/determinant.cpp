@@ -30,9 +30,9 @@ int determinant(int** matrix, int matrixSize) {
         int B {};               // [d][e][f]
         int C {};               // [g][h][i]  determinant is = a(ei-fh) - b(di-fg) + c(dh-eg)
 
-        A = (matrix[0][0] * (matrix[1][1] * matrix[2][2]) - (matrix[2][1] * matrix[1][2]));
-        B = (matrix[1][0] * (matrix[1][0] * matrix[2][2]) - (matrix[2][0] * matrix[1][2]));
-        C = (matrix[2][0] * (matrix[1][0] * matrix[2][1]) - (matrix[2][0] * matrix[1][2]));
+        A = (matrix[0][0] * ((matrix[1][1] * matrix[2][2]) - (matrix[2][1] * matrix[1][2]));
+        B = (matrix[1][0] * ((matrix[1][0] * matrix[2][2]) - (matrix[2][0] * matrix[1][2]));
+        C = (matrix[2][0] * ((matrix[1][0] * matrix[2][1]) - (matrix[2][0] * matrix[1][2]));
 
         return (A - B + C);
 }
