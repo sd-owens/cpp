@@ -6,6 +6,7 @@
 #define FILEREADER_HPP
 
 // function prototypes
+void run(std::string& fileName);
 void count_letters(std::ifstream &, int*);
 void output_letters(std::ofstream &, int*);
 

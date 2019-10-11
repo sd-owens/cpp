@@ -1,6 +1,5 @@
 
 #include <iostream>
-#include <fstream>
 #include "fileReader.hpp"
 #include "Menu.hpp"
 
@@ -14,8 +13,8 @@ int main(){
                         "the frequency of the occurrence of each letter in the\n"
                         "input file.\n";
 
-    std::string mainMenu = "\nChoose an option:\n"
-                           "1. Start fileReader!\n2. Quit\n";
+    std::string mainMenu = "\nChoose an option:\n\n"
+                           "1. Start Reader!\n2. Quit\n";
 
     std::string subMenu1 = "\n(Note: input file must be in same directory as this executable)\n";
 //            "\nSome information is required before we begin the simulation:\n";
@@ -29,18 +28,26 @@ int main(){
                                "\nRead another file?\n"
                                "1. Yes\n2. Quit\n";
 
-    // initialize an array of 26 integers to 0, one for each letter of English Alphabet
-    int letterFreq[26] {0};
-
-    std::ifstream inputFile;
-    std::ofstream outputFile;
+    std::string fileName{};
+    int replayChoice {};
 
     Menu m (title, mainMenu, subMenu1, inputPrompts, startPrompt, replayPrompt );
-    m.display();
 
-    count_letters(inputFile, letterFreq);
+    fileName = m.display();
 
-    output_letters(outputFile, letterFreq);
+    if (fileName.empty()) {
+        std::cerr << "\nUser aborted or file name was empty, exiting..." << std::endl;
+    } else {
+
+        while (!fileName.empty()) {
+            run(fileName);
+            replayChoice = m.replay();
+            fileName = m.display(replayChoice);
+            if (fileName.empty()) {
+                std::cerr << "User aborted or file name was empty, exiting..." << std::endl;
+            }
+        }
+    }
 
     return 0;
 }

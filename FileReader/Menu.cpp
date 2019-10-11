@@ -52,7 +52,8 @@ Menu::Menu(std::string &title, std::string &mainMenu, std::string &subMenu1, std
 std::string Menu::display(int choice) {
 
     std::string inputMenu1, inputMenu2, inputMenu3 {};
-    choice = choice;
+    int choiceMenu1 = choice;
+    int choiceMenu3 {};
 
     std::string fileName;
 
@@ -61,19 +62,20 @@ std::string Menu::display(int choice) {
             std::cout << title;
             std::cout << mainMenu;
 
-            while(choice != 1 && choice != 2) {
+            while(choiceMenu1 != 1 && choiceMenu1 != 2) {
                 getline(std::cin, inputMenu1);
-                choice = validateInput(inputMenu1);
-                if(choice != 1 && choice != 2){
+                choiceMenu1 = validateInput(inputMenu1);
+                if(choiceMenu1 != 1 && choiceMenu1 != 2){
                     std::cerr << "Pick 1 or 2!\n";
                 }
             }
         }
 
-        if(choice == 2) {
-            break;
+        if(choiceMenu1 == 2 || choiceMenu3 == 2) {
+            fileName = "";  // return an empty string to main
+            return fileName;
 
-        } else if(choice == 1 || choice == 3) {
+        } else if(choiceMenu1 == 1 || choiceMenu3 == 3) {
 
             if(count == 0) {
                 std::cout << subMenu1;
@@ -85,19 +87,19 @@ std::string Menu::display(int choice) {
 
         }
         count++;
-        choice = 0;  // reset choice to 0 for next while loop check.
         std::cout << startPrompt;
 
-        while(choice != 1 && choice != 2 && choice != 3) {
+        choiceMenu3 = 0; //reset choice menu 3 to 0 prior to entering loop.
+
+        while(choiceMenu3 != 1 && choiceMenu3 != 2 && choiceMenu3 != 3) {
             getline(std::cin, inputMenu3);
-            choice = validateInput(inputMenu3);
-            //TODO error in menu and in Langstons Ant
-            if(choice != 1 && choice != 2){
+            choiceMenu3 = validateInput(inputMenu3);
+            if(choiceMenu3 != 1 && choiceMenu3 != 2 && choiceMenu3 != 3){
                 std::cerr << "Pick 1, 2, or 3!\n";
             }
         }
 
-        if(choice == 1) {
+        if(choiceMenu3 == 1) {
             return fileName;
         }
 

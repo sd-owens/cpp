@@ -6,6 +6,19 @@
 #include <iostream>
 #include "fileReader.hpp"
 
+void run(std::string& fileName) {
+
+    std::ifstream inputFile;
+    std::ofstream outputFile;
+
+    inputFile.open(fileName);
+
+    // initialize an array of 26 integers to 0, one for each letter of English Alphabet
+    int letterFreq[26] {0};
+
+    count_letters(inputFile, letterFreq);
+    output_letters(outputFile, letterFreq);
+}
 
 void count_letters(std::ifstream & inputFile, int * letterFreq) {
 
@@ -15,8 +28,6 @@ void count_letters(std::ifstream & inputFile, int * letterFreq) {
 
     std::string words;
     std::string lines;
-
-    inputFile.open("../file_fun.txt");
 
     if(inputFile) {
 
