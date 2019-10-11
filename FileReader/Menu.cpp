@@ -1,19 +1,19 @@
-/**********************************************************************************
- * Program name: Langston's Ant
- * Author: Steven Owens
- * Date: 10/8/2019
- * Description:  Langston's ant is a two-dimensional universal Turing machine
- *               invented by Chris Langston in 1986.  It is a cellular automation
- *               created on a black and white game board re-created in c++ using
- *               in the console using the char '#' for black and ' ' for white.
- *               The game board implementation is a dynamically allocated 2D array
- *               of characters on the heap. The user is prompted by a console menu
- *               for 5 integers (rows, columns, steps, ant starting row and ant
- *               starting column) as inputs to setup the game parameters.  Once
- *               the user is satisfied with the setup, the simulations continues
- *               until the number of steps reaches 0.  An additional replay feature
- *               allows the user to run the simulation again.
- *********************************************************************************/
+/**************************************************************************************
+* Program name: File Reader
+* Author: Steven Owens
+* Date: 10/11/2019
+* Description:  File Reader is a program that reads in an input file as specified
+*               by the user and counts the occurrence of each letter from the English
+*               alphabet. The program then outputs the frequency of each letter
+*               occurrence as a separate output file named output.txt in the same
+*               directory as the binary executable. Note, the input file should be
+*               located in the same directory as the binary executable or the relative
+*               path to the file must be specified as part of the file name.  For
+*               instance, input.txt  in a directory one level above the binary would
+*               be specified as "../input.txt" signifying it resides in the parent
+*               directory.  As prompt is provided to the user to distinguish the
+*               actions required on either a UNIX (Mac or Linux) or a Windows OS.
+**************************************************************************************/
 #include <iostream>
 #include <string>
 #include "Menu.hpp"
@@ -27,9 +27,9 @@ int Menu::count;
  * Summary: Menu constructor which takes numerous input parameters passed by reference
  *          to prevent duplicating strings in memory.  Each input param is initialized
  *          to its respective private instance variable.
- * Param: 5 strings for menu Prompts and one vector of strings for data prompts. By passing
- *        in params in this manner I have attempted to encapsulate the Menu class for future
- *        use a generic user input Menu.
+ * Param: 6 strings for menu Prompts for data prompts. By passing in params in this
+ *        manner I have attempted to encapsulate the Menu class for future use a
+ *        generic user input Menu.
  * Returns: N/A
  */
 Menu::Menu(std::string &title, std::string &mainMenu, std::string &subMenu1, std::string &inputPrompts, std::string &startPrompt, std::string &relayPrompt) {
@@ -42,12 +42,10 @@ Menu::Menu(std::string &title, std::string &mainMenu, std::string &subMenu1, std
 }
 /*
  * Summary: Primary method for user input, handles all logic and console prompts to facilitate user input
- *          and validation of entry of only positive integer values.  Ensuring that the Ant startRow and
- *          startColumn are within the bound of the game board is handled by the AntGame class once returned
- *          as a vector.
+ *          and validation of entry of only positive integer values.
  * Param: int choice which by default is 0 from hpp definition, this allows passing in a value for the replay
  *        functionality.
- * Returns: std::vector<int> which are the 5 integers required for instantiation of objects in AntGame.
+ * Returns: std::string which is the name of the input file for the file reader.
  */
 std::string Menu::display(int choice) {
 
