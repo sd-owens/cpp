@@ -15,27 +15,23 @@
 *               actions required on either a UNIX (Mac or Linux) or a Windows OS.
 *************************************************************************************/
 
-#ifndef MENU_HPP
-#define MENU_HPP
+#ifndef FILEREADER_HPP
+#define FILEREADER_HPP
 
-class Menu {
+#include "Menu.hpp"
+
+class FileReader {
 private:
-    std::string title;
-    std::string mainMenu;
-    std::string subMenu1;
-    std::string inputPrompts;
-    std::string startPrompt;
-    std::string replayPrompt;
-    std::string outputPrompt1;
-    std::string outputPrompt2;
-    bool replayFlag;
+    Menu* menu;
+    std::string fileName;
+    std::string outputName;
 public:
-    Menu(std::string &title, std::string &mainMenu, std::string &subMenu1, std::string &inputPrompts, std::string &startPrompt, std::string &relayPrompt, std::string &outputPrompt1, std::string &outputPrompt2);
-    std::string inputMenu(int choice = 0);
-    int replayMenu();
-    std::string outputMenu();
-    unsigned int static resetStatic(unsigned int& );
+    FileReader(Menu* menu);
+    void run();
+    void resetCount(int * letterFreq);
+    void count_letters(std::ifstream &, int*);
+    void output_letters(std::ofstream &, int*);
 };
 
 
-#endif //MENU_HPP
+#endif //FILEREADER_HPP

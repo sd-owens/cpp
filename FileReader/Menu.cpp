@@ -18,27 +18,25 @@
 #include <string>
 #include "Menu.hpp"
 #include "validInput.hpp"
-
-/* static variable to track the number of times a Menu object is created for use
- * in user replay feature. only need to know if the call is greater than once.
- */
-int Menu::count;
 /*
  * Summary: Menu constructor which takes numerous input parameters passed by reference
  *          to prevent duplicating strings in memory.  Each input param is initialized
  *          to its respective private instance variable.
- * Param: 6 strings for menu Prompts for data prompts. By passing in params in this
+ * Param: 8 strings for menu Prompts for data prompts. By passing in params in this
  *        manner I have attempted to encapsulate the Menu class for future use a
  *        generic user input Menu.
  * Returns: N/A
  */
-Menu::Menu(std::string &title, std::string &mainMenu, std::string &subMenu1, std::string &inputPrompts, std::string &startPrompt, std::string &relayPrompt) {
+Menu::Menu(std::string &title, std::string &mainMenu, std::string &subMenu1, std::string &inputPrompts, std::string &startPrompt, std::string &relayPrompt, std::string &outputPrompt1, std::string &outputPrompt2) {
     this->title = title;
     this->mainMenu = mainMenu;
     this->subMenu1 = subMenu1;
     this->inputPrompts = inputPrompts;
     this->startPrompt = startPrompt;
     this->replayPrompt = relayPrompt;
+    this->outputPrompt1 = outputPrompt1;
+    this->outputPrompt2 = outputPrompt2;
+    this->replayFlag = false;
 }
 /*
  * Summary: Primary method for user input, handles all logic and console prompts to facilitate user input
@@ -47,8 +45,10 @@ Menu::Menu(std::string &title, std::string &mainMenu, std::string &subMenu1, std
  *        functionality.
  * Returns: std::string which is the name of the input file for the file reader.
  */
-std::string Menu::display(int choice) {
+std::string Menu::inputMenu(int choice) {
 
+    /* static variable to track the number of times a Menu object is created for use in user replay feature.*/
+    static unsigned int count;
     std::string inputMenu1, inputMenu2, inputMenu3 {};
     int choiceMenu1 = choice;
     int choiceMenu3 {};
@@ -108,7 +108,9 @@ std::string Menu::display(int choice) {
  * Param: none
  * Returns: int which is a 1 or 2 by the menu.
  */
-int Menu::replay() {
+int Menu::replayMenu() {
+
+    this->replayFlag = true;
 
     std::string inputMenu4 {};
     int choice {};
@@ -123,4 +125,30 @@ int Menu::replay() {
     }
 
     return choice;
+}
+/*
+ * Summary: OutputMenu function which displays a menu to the user and captures their choice. Uses a static
+ *          local variable to track number of calls to update paragraph number in console prompt.
+ * Param: none
+ * Returns: std::string output file name
+ */
+std::string Menu::outputMenu(){
+    /* static variable to track outputMenu calls for custom outputPrompt.*/
+    static unsigned int count = 1;
+    if(this->replayFlag){
+        resetStatic(count);  //resets static counter to 1 since a true replayFlag means a new file is being read.
+    }
+    std::string inputMenu5;
+    if(count == 1){
+        std::cout << outputPrompt1 << std::endl;
+    }
+    std::cout << outputPrompt2 + "Paragraph (" + std::to_string(count) + "): \n";
+    getline(std::cin, inputMenu5);
+    count++;
+    return inputMenu5;
+}
+
+unsigned int Menu::resetStatic(unsigned int& count) {
+    count = 1;
+    return count;
 }

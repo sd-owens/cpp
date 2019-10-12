@@ -19,7 +19,8 @@
 #define FILEREADER_HPP
 
 // function prototypes
-void run(std::string& fileName);
+void run(std::string& fileName, std::string& outputName);
+void resetCount(int * letterFreq);
 void count_letters(std::ifstream &, int*);
 void output_letters(std::ofstream &, int*);
 

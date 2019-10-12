@@ -66,60 +66,24 @@ default: clean $(BIN) #debug
 #     $@    Name of tag
 #     $^    Name of dependency
 debug: $(BIN)
-        @valgrind $(VOPT) ./$(BIN)
+	@valgrind $(VOPT) ./$(BIN)
 
 $(BIN): $(OBJ)
-        @echo "CC       $@"
-        @$(CXX) $(CFLAGS) $^ -o $@
+	@echo "CC       $@"
+	@$(CXX) $(CFLAGS) $^ -o $@
 
 # % is a wildcard. Anything that ends in ".o" will match this tag, and each
 # tag depends on the same matching wildcard, but ending in ".cpp"
 %.o: %.cpp
-        @echo "CC       $^"
-        @$(CXX) $(CXXVER) $(CFLAGS) -c $^
+	@echo "CC       $^"
+	@$(CXX) $(CXXVER) $(CFLAGS) -c $^
 
 zip:
-        zip $(PROJ).zip *.cpp *.hpp makefile
+	zip $(PROJ).zip *.cpp *.hpp makefile
 
 clean: $(CLEAN)
-        @echo "RM       *.o"
-        @echo "RM       $(BIN)"
-        @rm -f *.o $(BIN)
+	@echo "RM       *.o"
+	@echo "RM       $(BIN)"
+	@rm -f *.o $(BIN)
 
 
-# Default Behavior:
-#     1. Remove everything to start from screatch
-#     2. Compile the binary
-#     3. Run it through valgrind for quicker debugging
-#
-default: clean $(BIN) #debug
-
-# Order assuming no files exist:
-#     1. Each .o file
-#     2. Binary
-#     3. Valgrind
-#
-# Special Symbols:
-#     @     Suppresses the command from being printed to the terminal)
-#     $@    Name of tag
-#     $^    Name of dependency
-debug: $(BIN)
-        @valgrind $(VOPT) ./$(BIN)
-
-$(BIN): $(OBJ)
-        @echo "CC       $@"
-        @$(CXX) $(CFLAGS) $^ -o $@
-
-# % is a wildcard. Anything that ends in ".o" will match this tag, and each
-# tag depends on the same matching wildcard, but ending in ".cpp"
-%.o: %.cpp
-        @echo "CC       $^"
-        @$(CXX) $(CXXVER) $(CFLAGS) -c $^
-
-zip:
-        zip $(PROJ).zip *.cpp *.hpp makefile
-
-clean: $(CLEAN)
-        @echo "RM       *.o"
-        @echo "RM       $(BIN)"
-        @rm -f *.o $(BIN)

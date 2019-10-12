@@ -15,13 +15,12 @@
 *               actions required on either a UNIX (Mac or Linux) or a Windows OS.
 *************************************************************************************/
 #include <iostream>
-#include "fileReader.hpp"
 #include "Menu.hpp"
-
+#include "FileReader.hpp"
 /*
  * Summary: Main function which provides input prompt strings for the generic Menu class,
  *          initializes the name of the input file as provided by the user in the Menu
- *          and provides main while loop for the file reader program.
+ *          and provides the object creation for the file reader program.
  * Param: none
  * Returns: int which is a 0 for successful program execution, anything else is an error.
  */
@@ -42,7 +41,6 @@ int main(){
                            "|or the relative path must be provided \"../input.txt\"  [UNIX] |\n"
                            "|for a file in the parent directory (or \"..\\input.txt\\\" [WIN].|\n"
                            "---------------------------------------------------------------\n";
-//            "\nSome information is required before we begin the simulation:\n";
 
     std::string inputPrompts = "\nEnter the name of the input file: \n";
 
@@ -53,26 +51,23 @@ int main(){
                                "\nRead another file?\n"
                                "1. Yes\n2. Quit\n";
 
-    std::string fileName{};
-    int replayChoice {};
+    std::string outputPrompt1 = "\n----------------------------------------------------------------\n"
+                               "|Note: Output files must be in same directory as the executable|\n"
+                               "|or the relative path must be provided \"../output.txt\"  [UNIX] |\n"
+                               "|for a file in the parent directory (or \"..\\output.txt\\\" [WIN].|\n"
+                               "----------------------------------------------------------------\n"
+                               "\nEach paragraph letter count will be output to a separate file.\n";
+    std::string outputPrompt2 = "\nEnter the name of the output file for ";
 
-    Menu m (title, mainMenu, subMenu1, inputPrompts, startPrompt, replayPrompt );
+    auto* m = new Menu(title, mainMenu, subMenu1, inputPrompts, startPrompt, replayPrompt, outputPrompt1, outputPrompt2 );
 
-    fileName = m.display();
+    auto* fr = new FileReader(m);
+    fr->run();
 
-    if (fileName.empty()) {
-        std::cerr << "\nUser aborted or file name was empty, exiting..." << std::endl;
-    } else {
-
-        while (!fileName.empty()) {
-            run(fileName);
-            replayChoice = m.replay();
-            fileName = m.display(replayChoice);
-            if (fileName.empty()) {
-                std::cerr << "User aborted or file name was empty, exiting..." << std::endl;
-            }
-        }
-    }
+    delete fr;
+    delete m;
+    fr = nullptr;
+    m = nullptr;
 
     return 0;
 }

@@ -18,16 +18,16 @@
 #include <fstream>
 #include <iostream>
 #include "fileReader.hpp"
+#include "Menu.hpp"
 /*
  * Summary: Sets up File Reader function by initializing input and output file
  *          streams and an array of integers for recording letter frequencies.
  * Param: std::string which is the input file name passed by reference from main.cpp
  * Returns: void
  */
-void run(std::string& fileName) {
+void run(std::string& fileName, std::string& outputName) {
 
     std::ifstream inputFile;
-    std::ofstream outputFile;
 
     inputFile.open(fileName);
 
@@ -35,7 +35,7 @@ void run(std::string& fileName) {
     int letterFreq[26] {0};
 
     count_letters(inputFile, letterFreq);
-    output_letters(outputFile, letterFreq);
+
 }
 /*
  * Summary: Reads in the input file stream to the string "words" and concatenates each
@@ -50,33 +50,41 @@ void run(std::string& fileName) {
 void count_letters(std::ifstream & inputFile, int * letterFreq) {
 
     const char letter = 'A';  // ascii code 65;
-    char temp {};  // temp variable to hold char while iterating through lines string.
+    std::ofstream outputFile;
     int index {};  // index from the result of 'char' subtraction for letterFreq []
 
-    std::string words;
-    std::string lines;
-
+    // true if file exists and permissions allow opening
     if(inputFile) {
+
+        std::string words;
 
         while (inputFile >> words) {
 
-            lines += words;
+            char temp {};  // temp variable to hold char while iterating through lines string.
+
+                for(int i = 0; i < words.length(); i++) {
+
+                    if (words.at(i) == '\n'){
+                        output_letters(outputFile, letterFreq);
+                        break;
+                    }
+
+                    if (std::isalpha(words.at(i))){
+
+                        temp = std::toupper(words.at(i));
+
+                        // uses char arithmetic based off the 'A" ascii code of 65 to determine index.
+                        index = temp - letter;
+
+                        letterFreq[index]++;
+                    }
+                }
+                resetCount(letterFreq);
         }
+
     } else {
+
         std::cout << "File could not be found and opened" << std::endl;
-    }
-
-    for (int i = 0; i < lines.length(); i++){
-
-        if (std::isalpha(lines.at(i))){
-
-            temp = std::toupper(lines.at(i));
-
-            // uses char arithmetic based off the 'A" ascii code of 65 to determine index.
-            index = temp - letter;
-
-            letterFreq[index]++;
-        }
     }
 
     inputFile.close();
@@ -85,6 +93,7 @@ void count_letters(std::ifstream & inputFile, int * letterFreq) {
  * Summary: Outputs the letter frequency array to an output file named output.txt.  Uses
  *          char arithmetic based on the ascii code for 'A' of 65 to create a label for
  *          each integer value held in the letterFreq array.
+ *
  * Param: std::ofstream and a pointer to the array of integers letterFreq.
  * Returns: void
  */
@@ -99,4 +108,15 @@ void output_letters(std::ofstream & outputFile, int * letterFreq) {
             outputFile << ": " << std::to_string(letterFreq[i]) + "\n";
         }
         outputFile.close();
+}
+/*
+ * Summary: Resets the letter frequency array to 26 zeros.
+ * Param:  Pointer to the array of integers letterFreq.
+ * Returns: void
+ */
+void resetCount(int * letterFreq){
+
+    for (int i = 0; i < 26; i++){
+        letterFreq[i] = 0;
+    }
 }
