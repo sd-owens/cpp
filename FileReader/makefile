@@ -18,7 +18,7 @@
 # makefile syntax adapted from example provided TA Harlan James <waldroha@oregonstat.edu>
 
 # Project Name
-PROJ = fileReader
+PROJ = FileReader
 
 # Compiler
 CXX = g++
@@ -31,7 +31,7 @@ CXXFLAGS = -Wall -g
 
 # Source Files
 SRC = main.cpp
-SRC += fileReader.cpp Menu.cpp validInput.cpp
+SRC += FileReader.cpp Menu.cpp validInput.cpp
 
 # Create an object for each source file
 OBJ = $(SRC:.cpp=.o)

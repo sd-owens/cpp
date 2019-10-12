@@ -52,11 +52,15 @@ int main(){
                                "1. Yes\n2. Quit\n";
 
     std::string outputPrompt1 = "\n----------------------------------------------------------------\n"
-                               "|Note: Output files must be in same directory as the executable|\n"
+                               "|Note: Output files will be in same directory as the executable|\n"
                                "|or the relative path must be provided \"../output.txt\"  [UNIX] |\n"
                                "|for a file in the parent directory (or \"..\\output.txt\\\" [WIN].|\n"
                                "----------------------------------------------------------------\n"
-                               "\nEach paragraph letter count will be output to a separate file.\n";
+                               "\n----------------------------------------------------------------\n"
+                               "|Each paragraph letter count will be output to a separate file.|\n"
+                               "| *** Unique names must be provided to prevent overwriting *** |\n"
+                               "----------------------------------------------------------------\n";
+
     std::string outputPrompt2 = "\nEnter the name of the output file for ";
 
     auto* m = new Menu(title, mainMenu, subMenu1, inputPrompts, startPrompt, replayPrompt, outputPrompt1, outputPrompt2 );

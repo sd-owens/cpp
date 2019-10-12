@@ -126,7 +126,7 @@ void FileReader::count_letters(std::ifstream& ifs, int * letterFreq){
 
     } else {
 
-        std::cout << "Input file could not be found and opened\n"
+        std::cout << "\nInput file could not be found and opened\n"
                      "Please check spelling and/or path syntax" << std::endl;
     }
 }
@@ -152,7 +152,7 @@ void FileReader::output_letters(std::ofstream & ofs, int* letterFreq){
 
     } else {
 
-        std::cout << "Output file could not be found and opened\n"
+        std::cout << "\nOutput file could not be found and opened\n"
                      "Please check spelling and/or path syntax" << std::endl;
 
     }

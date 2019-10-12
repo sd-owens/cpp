@@ -137,6 +137,7 @@ std::string Menu::outputMenu(){
     static unsigned int count = 1;
     if(this->replayFlag){
         resetStatic(count);  //resets static counter to 1 since a true replayFlag means a new file is being read.
+        this->replayFlag = false;
     }
     std::string inputMenu5;
     if(count == 1){
